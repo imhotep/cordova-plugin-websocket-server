@@ -34,6 +34,7 @@ public class WebSocketServerPlugin extends CordovaPlugin {
     public static final String ACTION_GET_INTERFACES = "getInterfaces";
     public static final String ACTION_START = "start";
     public static final String ACTION_STOP = "stop";
+    public static final String ACTION_ACTIVE = "active";
     public static final String ACTION_SEND = "send";
     public static final String ACTION_CLOSE = "close";
 
@@ -83,6 +84,12 @@ public class WebSocketServerPlugin extends CordovaPlugin {
                     callbackContext.sendPluginResult(result);
                 }
             });
+        
+        } else if (ACTION_ACTIVE.equals(action)) {
+            boolean active = (wsserver != null && wsserver.active);
+            Log.d("WebSocketServer", "status: " + active);
+            PluginResult result = new PluginResult(PluginResult.Status.OK, active);
+            callbackContext.sendPluginResult(result);
 
         } else if (ACTION_START.equals(action)) {
 

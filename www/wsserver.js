@@ -18,7 +18,7 @@ var WebSocketServer = {
         return exec(callback, fail, "WebSocketServer", "getInterfaces", []);
     },
 
-    start : function(port, options) {
+    start  : function(port, options) {
         return exec(function(result) {
             switch (result.action) {
             case 'onStart':
@@ -52,15 +52,19 @@ var WebSocketServer = {
         }, fail, "WebSocketServer", "start", [ port, options.origins, options.protocols ]);
     },
 
-    stop : function() {
+    stop   : function() {
         return exec(null, fail, "WebSocketServer", "stop", []);
     },
 
-    send : function(conn, msg) {
+    active : function(callback) {
+        return exec(callback, fail, "WebSocketServer", "active", []);
+    },
+
+    send   : function(conn, msg) {
         return exec(null, fail, "WebSocketServer", "send", [ conn.uuid, msg ]);
     },
 
-    close : function(conn, code, reason) {
+    close  : function(conn, code, reason) {
         return exec(null, fail, "WebSocketServer", "close", [ conn.uuid, code, reason ]);
     }
 
